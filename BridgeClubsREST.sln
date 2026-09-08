@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36511.14 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeClubsREST", "BridgeClubsREST\BridgeClubsREST.csproj", "{9967A83B-FA8A-4F44-A510-45F67ED0F649}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BridgeClubLib", "BridgeClubLib\BridgeClubLib.csproj", "{D3F63D9E-86C2-4500-932A-1D9C66A3725F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9967A83B-FA8A-4F44-A510-45F67ED0F649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9967A83B-FA8A-4F44-A510-45F67ED0F649}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9967A83B-FA8A-4F44-A510-45F67ED0F649}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9967A83B-FA8A-4F44-A510-45F67ED0F649}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3F63D9E-86C2-4500-932A-1D9C66A3725F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3F63D9E-86C2-4500-932A-1D9C66A3725F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3F63D9E-86C2-4500-932A-1D9C66A3725F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3F63D9E-86C2-4500-932A-1D9C66A3725F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B0421F8A-7973-4A2E-9303-39FDD898C57D}
+	EndGlobalSection
+EndGlobal

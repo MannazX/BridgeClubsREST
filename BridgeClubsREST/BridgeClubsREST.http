@@ -1,0 +1,6 @@
+@BridgeClubsREST_HostAddress = http://localhost:5083
+
+GET {{BridgeClubsREST_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
