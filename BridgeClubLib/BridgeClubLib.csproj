@@ -10,8 +10,4 @@
     <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="7.10.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

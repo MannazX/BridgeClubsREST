@@ -20,8 +20,8 @@ namespace BridgeClubLib.Models
 		public double? CalculatedScoreNSPCT { get; set; }
 		public double? CalculatedScoreEW { get; set; }
 		public double? CalculatedScoreEWPCT { get; set; }
-		public char? Declarer { get; set; }
-		public char? Doubling { get; set; }
+		public string? Declarer { get; set; }
+		public string? Doubling { get; set; }
 		public int? Tricks { get; set; }
 		public int? ResultCompleted { get; set; }
 		public int? ExcludeGame { get; set; }
@@ -34,7 +34,7 @@ namespace BridgeClubLib.Models
 			
 		}
 
-		public Result(int resultId, int? matchId, int? boardNo, int? boardGroup, string? contract, string? lead, int? matchResult, double? calcScoreNS, double? calcScoreNSPCT, double? calcScoreEW, double? calcScoreEWPCT, char? declarer, char? doubling, int? tricks, int? resultCompleted, int? excludeGame, int? boardCompared)
+		public Result(int resultId, int? matchId, int? boardNo, int? boardGroup, string? contract, string? lead, int? matchResult, double? calcScoreNS, double? calcScoreNSPCT, double? calcScoreEW, double? calcScoreEWPCT, string? declarer, string? doubling, int? tricks, int? resultCompleted, int? excludeGame, int? boardCompared)
 		{
 			ResultID = resultId;
 			MatchID = matchId;

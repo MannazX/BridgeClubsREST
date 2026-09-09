@@ -1,3 +1,6 @@
+using BridgeClubLib.Interfaces;
+using BridgeClubLib.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -25,6 +28,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.MapOpenApi();
+app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseAuthorization();

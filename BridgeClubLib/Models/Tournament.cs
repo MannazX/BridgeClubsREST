@@ -10,15 +10,17 @@ namespace BridgeClubLib.Models
 	{
 		#region Properties
 		public int TournamentID { get; set; }
-		public int? MainTournamentID { get; set; }
-		public int? GroupNo { get; set; }
-		public int? TournamentType { get; set; }
-		public int? NumberOfTeams { get; set; }
-		public int? NumberOfSections { get; set; }
-		public int? NumberOfRounds { get; set; }
-		public int? NumberOfTables { get; set; }
-		public int? BoardsPerRound { get; set; }
-		public int? HalvesPerMatch { get; set; }
+		public string? Name { get; set; }
+		public int? TournamentForm { get; set; }
+		public int? CommonTop { get; set; }
+		public int? ClubID { get; set; }
+		public int? IncludeClubName { get; set; }
+		public int? UseLeads { get; set; }
+		public int? StrengthGroupCount { get; set; }
+		public string? LastChangedBy { get; set; }
+		public DateOnly? LastChangedDate { get; set; }
+		public int? NumberOfGroups { get; set; }
+		public int? NumberOfPlayingDays { get; set; }
 		#endregion
 
 		#region Constructor
@@ -26,18 +28,20 @@ namespace BridgeClubLib.Models
 		{
 			
 		}
-		public Tournament(int tournamentId, int? mainTournamentId, int? groupNo, int? tournamentType, int? numberOfTeams, int? numberOfSections, int? numberOfRounds, int? numberOfTables, int? boardsPerRound, int halvesPerMatch)
+		public Tournament(int tournamentId, string? name, int? tournamentForm, int? commonTop, int? clubId, int? includeClubName, int? useLeads, int? strengthGroupCount, string? lastChangedBy, DateOnly? lastChangedDate, int? numberOfGroups, int? numberOfPlayingDays)
 		{
 			TournamentID = tournamentId;
-			MainTournamentID = mainTournamentId;
-			GroupNo = groupNo;
-			TournamentType = tournamentType;
-			NumberOfTeams = numberOfTeams;
-			NumberOfSections = numberOfSections;
-			NumberOfRounds = numberOfRounds;
-			NumberOfTables = numberOfTables;
-			BoardsPerRound = boardsPerRound;
-			HalvesPerMatch = halvesPerMatch;
+			Name = name;
+			TournamentForm = tournamentForm;
+			CommonTop = commonTop;
+			ClubID = clubId;
+			IncludeClubName = includeClubName;
+			UseLeads = useLeads;
+			StrengthGroupCount = strengthGroupCount;
+			LastChangedBy = lastChangedBy;
+			LastChangedDate = lastChangedDate;
+			NumberOfGroups = numberOfGroups;
+			NumberOfPlayingDays = numberOfPlayingDays;
 		}
 		#endregion
 	}
