@@ -35,17 +35,17 @@ namespace BridgeClubLib.Repositories
 							while (await reader.ReadAsync())
 							{
 								int tournamentId = reader.GetInt32("ID");
-								string? name = reader.GetString("NAME");
-								int? tournementForm = reader.GetInt32("TOURNAMENTFORM");
-								int? commonTop = reader.GetInt32("COMMONTOP");
-								int? clubId = reader.GetInt32("FKCLUBID");
-								int? includeName = reader.GetInt32("INCLUDECLUBNAME");
-								int? useLeads = reader.GetInt32("USELEADS");
-								int? strengthGroupCount = reader.GetInt32("STRENGTHGROUPCOUNT");
-								string? lastChangedBy = reader.GetString("LAST_CHANGED_BY");
-								DateOnly? lastChangedDate = reader.IsDBNull(reader.GetOrdinal("LAST_CHANGED_DATE")) ? null : DateOnly.FromDateTime(reader.GetDateTime(reader.GetOrdinal("LAST_CHANGED_DATE")));
-								int? numberOfGroups = reader.GetInt32("NUMBEROFGROUPS");
-								int? numberOfPlayingDays = reader.GetInt32("NUMBEROFPLAYINGDAYS");
+								string? name = reader.IsDBNull("NAME") ? null : reader.GetString("NAME");
+								int? tournementForm = reader.IsDBNull("TOURNAMENTFORM") ? null : reader.GetInt32("TOURNAMENTFORM");
+								int? commonTop = reader.IsDBNull("COMMONTOP") ? null : reader.GetInt32("COMMONTOP");
+								int? clubId = reader.IsDBNull("FKCLUBID") ? null : reader.GetInt32("FKCLUBID");
+								int? includeName = reader.IsDBNull("INCLUDECLUBNAME") ? null : reader.GetInt32("INCLUDECLUBNAME");
+								int? useLeads = reader.IsDBNull("USELEADS") ? null : reader.GetInt32("USELEADS");
+								int? strengthGroupCount = reader.IsDBNull("STRENGTHGROUPCOUNT") ? null : reader.GetInt32("STRENGTHGROUPCOUNT");
+								string? lastChangedBy = reader.IsDBNull("LAST_CHANGED_BY") ? null : reader.GetString("LAST_CHANGED_BY");
+								DateOnly? lastChangedDate = reader.IsDBNull("LAST_CHANGED_DATE") ? null : reader.IsDBNull(reader.GetOrdinal("LAST_CHANGED_DATE")) ? null : DateOnly.FromDateTime(reader.GetDateTime(reader.GetOrdinal("LAST_CHANGED_DATE")));
+								int? numberOfGroups = reader.IsDBNull("NUMBEROFGROUPS") ? null : reader.GetInt32("NUMBEROFGROUPS");
+								int? numberOfPlayingDays = reader.IsDBNull("NUMBEROFPLAYINGDAYS") ? null : reader.GetInt32("NUMBEROFPLAYINGDAYS");
 								Tournament tournament = new Tournament(tournamentId, name, tournementForm, commonTop, clubId, includeName, useLeads, strengthGroupCount, lastChangedBy, lastChangedDate, numberOfGroups, numberOfPlayingDays);
 								if (!tournaments.Contains(tournaments.Find(x => x.TournamentID == tournamentId)))
 								{

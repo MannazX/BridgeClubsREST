@@ -35,22 +35,22 @@ namespace BridgeClubLib.Repositories
 							while (await reader.ReadAsync())
 							{
 								int resultId = reader.GetInt32("ID");
-								int? matchId = reader.GetInt32("FKMATCHID");
-								int? boardNo = reader.GetInt32("BOARDNO");
-								int? boardGroup = reader.GetInt32("BOARDGROUP");
-								string? contract = reader.GetString("CONTRACT");
-								string? lead = reader.GetString("LEAD");
-								int? result = reader.GetInt32("RESULT");
-								double? calculatedScoreNs = reader.GetInt32("CALCULATEDSCORENS");
-								double? calculatedScoreNspct = reader.GetInt32("CALCULATEDSCORENSPCT");
-								double? calculatedScoreEw = reader.GetInt32("CALCULATEDSCOREEW");
-								double? calculatedScoreEwpct = reader.GetInt32("CALCULATEDSCOREEWPCT");
-								string? declarer = reader.GetString("DECLARER");
-								string? doubling = reader.GetString("DOUBLING");
-								int? tricks = reader.GetInt32("TRICKS");
-								int? resultCompleted = reader.GetInt32("RESULTCOMPLETED");
-								int? excludeGame = reader.GetInt32("EXCLUDEGAME");
-								int? boardCompared = reader.GetInt32("BOARDCOMPARED");
+								int? matchId = reader.IsDBNull("FKMATCHID") ? null : reader.GetInt32("FKMATCHID");
+								int? boardNo = reader.IsDBNull("BOARDNO") ? null : reader.GetInt32("BOARDNO");
+								int? boardGroup = reader.IsDBNull("BOARDGROUP") ? null : reader.GetInt32("BOARDGROUP");
+								string? contract = reader.IsDBNull("CONTRACT") ? null : reader.GetString("CONTRACT");
+								string? lead = reader.IsDBNull("LEAD") ? null : reader.GetString("LEAD");
+								int? result = reader.IsDBNull("RESULT") ? null : reader.GetInt32("RESULT");
+								double? calculatedScoreNs = reader.IsDBNull("CALCULATEDSCORENS") ? null : reader.GetInt32("CALCULATEDSCORENS");
+								double? calculatedScoreNspct = reader.IsDBNull("CALCULATEDSCORENSPCT") ? null : reader.GetInt32("CALCULATEDSCORENSPCT");
+								double? calculatedScoreEw = reader.IsDBNull("CALCULATEDSCOREEW") ? null : reader.GetInt32("CALCULATEDSCOREEW");
+								double? calculatedScoreEwpct = reader.IsDBNull("CALCULATEDSCOREEWPCT") ? null : reader.GetInt32("CALCULATEDSCOREEWPCT");
+								string? declarer = reader.IsDBNull("DECLARER") ? null : reader.GetString("DECLARER");
+								string? doubling = reader.IsDBNull("DOUBLING") ? null : reader.GetString("DOUBLING");
+								int? tricks = reader.IsDBNull("TRICKS") ? null : reader.GetInt32("TRICKS");
+								int? resultCompleted = reader.IsDBNull("RESULTCOMPLETED") ? null : reader.GetInt32("RESULTCOMPLETED");
+								int? excludeGame = reader.IsDBNull("EXCLUDEGAME") ? null : reader.GetInt32("EXCLUDEGAME");
+								int? boardCompared = reader.IsDBNull("BOARDCOMPARED") ? null : reader.GetInt32("BOARDCOMPARED");
 								Result matchResult = new Result(resultId, matchId, boardNo, boardGroup, contract, lead, result, calculatedScoreNs, calculatedScoreNspct, calculatedScoreEw, calculatedScoreEwpct, declarer, doubling, tricks, resultCompleted, excludeGame, boardCompared);
 								if (!results.Contains(results.Find(x => x.ResultID == resultId)))
 								{

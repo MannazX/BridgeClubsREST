@@ -37,22 +37,22 @@ namespace BridgeClubLib.Repositories
 							while (await reader.ReadAsync())
 							{
 								int memberId = reader.GetInt32("MEMBER_ID");
-								int? memberNo = reader.GetInt32("MEMBER_NO");
-								string? name = reader.GetString("NAME");
-								string? address1 = reader.GetString("ADDRESS_1");
-								string? address2 = reader.GetString("ADDRESS_2");
-								string? countryCode = reader.GetString("COUNTRY_CODE");
-								string? zipCode = reader.GetString("ZIP_CODE");
-								string? city = reader.GetString("CITY");
-								string? phone1 = reader.GetString("PHONE_1");
-								string? phone2 = reader.GetString("PHONE_2");
-								string? phone3 = reader.GetString("PHONE_3");
-								string? email = reader.GetString("EMAIL");
+								int? memberNo = reader.IsDBNull("MEMBER_NO") ? null : reader.GetInt32("MEMBER_NO");
+								string? name = reader.IsDBNull("NAME") ? null : reader.GetString("NAME");
+								string? address1 = reader.IsDBNull("ADDRESS_1") ? null : reader.GetString("ADDRESS_1");
+								string? address2 = reader.IsDBNull("ADDRESS_2") ? null : reader.GetString("ADDRESS_2");
+								string? countryCode = reader.IsDBNull("COUNTRY_CODE") ? null : reader.GetString("COUNTRY_CODE");
+								string? zipCode = reader.IsDBNull("ZIP_CODE") ? null : reader.GetString("ZIP_CODE");
+								string? city = reader.IsDBNull("CITY") ? null : reader.GetString("CITY");
+								string? phone1 = reader.IsDBNull("PHONE_1") ? null : reader.GetString("PHONE_1");
+								string? phone2 = reader.IsDBNull("PHONE_2") ? null : reader.GetString("PHONE_2");
+								string? phone3 = reader.IsDBNull("PHONE_3") ? null : reader.GetString("PHONE_3");
+								string? email = reader.IsDBNull("EMAIL") ? null : reader.GetString("EMAIL");
 								DateOnly? clubStart = reader.IsDBNull(reader.GetOrdinal("CLUB_START")) ? null : DateOnly.FromDateTime(reader.GetDateTime(reader.GetOrdinal("CLUB_START")));
-								double? totalBronze = reader.GetDouble("TOTAL_BRONZE");
-								double? totalSilver = reader.GetDouble("TOTAL_SILVER");
-								double? totalGold = reader.GetDouble("TOTAL_GOLD");
-								double? totalMaster = reader.GetDouble("TOTAL_MASTER");
+								double? totalBronze = reader.IsDBNull("TOTAL_BRONZE") ? null : reader.GetDouble("TOTAL_BRONZE");
+								double? totalSilver = reader.IsDBNull("TOTAL_SILVER") ? null : reader.GetDouble("TOTAL_SILVER");
+								double? totalGold = reader.IsDBNull("TOTAL_GOLD") ? null : reader.GetDouble("TOTAL_GOLD");
+								double? totalMaster = reader.IsDBNull("TOTAL_MASTER") ? null : reader.GetDouble("TOTAL_MASTER");
 								Member member = new Member(memberId, memberNo, name, address1, address2, countryCode, zipCode, city, phone1, phone2, phone3, email, clubStart, totalBronze, totalSilver, totalGold, totalMaster);
 								if (!members.Contains(members.Find(x => x.MemberID == memberId)))
 								{
