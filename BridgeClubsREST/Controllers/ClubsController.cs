@@ -14,6 +14,24 @@ namespace BridgeClubsREST.Controllers
 		private IClubRepository clubRepo;
 		private ISubClubRepository subClubRepo;
 		private IMemberClubRepository memberClubRepo;
+		private IDatabaseNoRepository databaseNoRepo;
+
+		[HttpGet()]
+		[ProducesResponseType(StatusCodes.Status200OK)]
+		[ProducesResponseType(StatusCodes.Status204NoContent)]
+		public ActionResult<IEnumerable<string>> GetDatabaseNos()
+		{
+			databaseNoRepo = new DatabaseNoRepository();
+			IEnumerable<string> result = databaseNoRepo.GetDatabaseNos();
+			if (result.Count() == 0)
+			{
+				return NoContent();
+			}
+			else
+			{
+				return Ok(result);
+			}
+		}
 
 		[HttpGet("{fdbNo}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
