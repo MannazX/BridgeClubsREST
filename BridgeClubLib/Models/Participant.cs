@@ -14,8 +14,8 @@ namespace BridgeClubLib.Models
 		public double? StartHac { get; set; }
 		public int? PlayerNo { get; set; }
 		public int? PairNo { get; set; }
-		public int? Substitute { get; set; }
-		public int? IsCaptain { get; set; }
+		public int Substitute { get; set; }
+		public int IsCaptain { get; set; }
 		public double? TotalBronze { get; set; }
 		public double? TotalSilver { get; set; }
 		public double? TotalGold { get; set; }
@@ -28,7 +28,7 @@ namespace BridgeClubLib.Models
 			
 		}
 
-		public Participant(int participantId, string? playerName, double? startHac, int? playerNo, int? pairNo, int? substitute, int? isCaptain, double? totalBronze, double? totalSilver, double? totalGold, double? totalMaster)
+		public Participant(int participantId, string? playerName, double? startHac, int? playerNo, int? pairNo, int substitute, int isCaptain, double? totalBronze, double? totalSilver, double? totalGold, double? totalMaster)
 		{
 			ParticipantID = participantId;
 			PlayerName = playerName;

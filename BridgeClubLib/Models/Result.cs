@@ -10,9 +10,10 @@ namespace BridgeClubLib.Models
 	{
 		#region
 		public int ResultID { get; set; }
-		public int? MatchID { get; set; }
+		public int? SectionID { get; set; }
 		public int? BoardNo { get; set; }
 		public int? BoardGroup { get; set; }
+		public string? BiddingSequence { get; set; }
 		public string? Contract { get; set; }
 		public string? Lead { get; set; }
 		public int? MatchResult { get; set; }
@@ -34,10 +35,10 @@ namespace BridgeClubLib.Models
 			
 		}
 
-		public Result(int resultId, int? matchId, int? boardNo, int? boardGroup, string? contract, string? lead, int? matchResult, double? calcScoreNS, double? calcScoreNSPCT, double? calcScoreEW, double? calcScoreEWPCT, string? declarer, string? doubling, int? tricks, int? resultCompleted, int? excludeGame, int? boardCompared)
+		public Result(int resultId, int? sectionId, int? boardNo, int? boardGroup, string? contract, string? lead, int? matchResult, double? calcScoreNS, double? calcScoreNSPCT, double? calcScoreEW, double? calcScoreEWPCT, string? declarer, string? doubling, int? tricks, int? resultCompleted, int? excludeGame, int? boardCompared)
 		{
 			ResultID = resultId;
-			MatchID = matchId;
+			SectionID = sectionId;
 			BoardNo = boardNo;
 			BoardGroup = boardGroup;
 			Contract = contract;
