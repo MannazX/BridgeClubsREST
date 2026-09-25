@@ -9,14 +9,14 @@ namespace BridgeClubsREST.Controllers
 	public class ClubsController : Controller
 	{
 		private IMemberRepository memberRepo;
-		private IResultRepository resultRepo;
-		private ITournamentRepository tournamentRepo;
 		private IClubRepository clubRepo;
 		private ISubClubRepository subClubRepo;
 		private IMemberClubRepository memberClubRepo;
 		private IDatabaseNoRepository databaseNoRepo;
+		private ITournamentRepository tournamentRepo;
 
-		[HttpGet()]
+
+		[HttpGet]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
 		public ActionResult<IEnumerable<string>> GetDatabaseNos()
@@ -108,23 +108,6 @@ namespace BridgeClubsREST.Controllers
 		{
 			memberClubRepo = new MemberClubRepository(fdbNo);
 			IEnumerable<MemberClub> result = await memberClubRepo.GetMemberClubsAsync();
-			if (result.Count() == 0)
-			{
-				return NoContent();
-			}
-			else
-			{
-				return Ok(result);
-			}
-		}
-
-		[HttpGet("{fdbNo}/Results")]
-		[ProducesResponseType(StatusCodes.Status200OK)]
-		[ProducesResponseType(StatusCodes.Status204NoContent)]
-		public async Task<ActionResult<IEnumerable<Result>>> GetResults(string fdbNo)
-		{
-			resultRepo = new ResultRepository(fdbNo);
-			IEnumerable<Result> result = await resultRepo.GetResultsAsync();
 			if (result.Count() == 0)
 			{
 				return NoContent();

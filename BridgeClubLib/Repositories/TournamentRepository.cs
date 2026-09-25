@@ -13,7 +13,7 @@ namespace BridgeClubLib.Repositories
 	public class TournamentRepository : ITournamentRepository
 	{
 		private string connectString;
-		private string selectSql = "SELECT ID, NAME, TOURNAMENTFORM, COMMONTOP, FKCLUBID, INCLUDECLUBNAME, USELEADS, STRENGTHGROUPCOUNT, LAST_CHANGED_BY, LAST_CHANGED_DATE, NUMBEROFGROUPS, NUMBEROFPLAYINGDAYS FROM MAINTOURNAMENT";
+		private string selectSql = "SELECT M.ID AS MAINTOURNAMENTID, G.ID AS GROUPTOURNAMENTID, M.NAME, M.TOURNAMENTFORM, M.FKCLUBID, M.STRENGTHGROUPCOUNT, M.NUMBEROFGROUPS, M.NUMBEROFPLAYINGDAYS, G.GROUPNO, G.TOURNAMENTTYPE, G.NUMBEROFTEAMS, G.NUMBEROFSECTIONS, G.NUMBEROFROUNDS, G.NUMBEROFTABLES, G.BOARDSPERROUND, G.HALVESPERMATCH FROM MAINTOURNAMENT M JOIN GROUPTOURNAMENT G ON G.FKMAINTOURNAMENTID = M.ID";
 
 		public TournamentRepository(string fdbFileNo)
 		{
@@ -30,31 +30,28 @@ namespace BridgeClubLib.Repositories
 					await connect.OpenAsync();
 					using (FbCommand command = new FbCommand(selectSql, connect))
 					{
-						using (FbDataReader reader = (FbDataReader)await command.ExecuteReaderAsync())
+						using (FbDataReader reader = (FbDataReader) await command.ExecuteReaderAsync())
 						{
 							while (await reader.ReadAsync())
 							{
-								int tournamentId = reader.GetInt32("ID");
-								string? name = reader.IsDBNull("NAME") ? null : reader.GetString("NAME");
-								int? tournementForm = reader.IsDBNull("TOURNAMENTFORM") ? null : reader.GetInt32("TOURNAMENTFORM");
-								int? commonTop = reader.IsDBNull("COMMONTOP") ? null : reader.GetInt32("COMMONTOP");
-								int? clubId = reader.IsDBNull("FKCLUBID") ? null : reader.GetInt32("FKCLUBID");
-								int? includeName = reader.IsDBNull("INCLUDECLUBNAME") ? null : reader.GetInt32("INCLUDECLUBNAME");
-								int? useLeads = reader.IsDBNull("USELEADS") ? null : reader.GetInt32("USELEADS");
-								int? strengthGroupCount = reader.IsDBNull("STRENGTHGROUPCOUNT") ? null : reader.GetInt32("STRENGTHGROUPCOUNT");
-								string? lastChangedBy = reader.IsDBNull("LAST_CHANGED_BY") ? null : reader.GetString("LAST_CHANGED_BY");
-								DateOnly? lastChangedDate = reader.IsDBNull("LAST_CHANGED_DATE") ? null : reader.IsDBNull(reader.GetOrdinal("LAST_CHANGED_DATE")) ? null : DateOnly.FromDateTime(reader.GetDateTime(reader.GetOrdinal("LAST_CHANGED_DATE")));
-								int? numberOfGroups = reader.IsDBNull("NUMBEROFGROUPS") ? null : reader.GetInt32("NUMBEROFGROUPS");
-								int? numberOfPlayingDays = reader.IsDBNull("NUMBEROFPLAYINGDAYS") ? null : reader.GetInt32("NUMBEROFPLAYINGDAYS");
-								Tournament tournament = new Tournament(tournamentId, name, tournementForm, commonTop, clubId, includeName, useLeads, strengthGroupCount, lastChangedBy, lastChangedDate, numberOfGroups, numberOfPlayingDays);
-								if (!tournaments.Contains(tournaments.Find(x => x.TournamentID == tournamentId)))
-								{
-									tournaments.Add(tournament);
-								}
-								else
-								{
-									throw new Exception("Tournament exists in the list");
-								}
+								int mainTournamentId = reader.GetInt32("MAINTOURNAMENTID");
+								int groupTournementId = reader.GetInt32("GROUPTOURNAMENTID");
+								string? name = reader.IsDBNull("M.NAME") ? null : reader.GetString("M.NAME");
+								int? tournementForm = reader.IsDBNull("M.TOURNAMENTFORM") ? null : reader.GetInt32("M.TOURNAMENTFORM");
+								int? clubId = reader.IsDBNull("M.FKCLUBID") ? null : reader.GetInt32("M.FKCLUBID");
+								int? strengthCount = reader.IsDBNull("M.STRENGTHGROUPCOUNT") ? null : reader.GetInt32("M.STRENGTHGROUPCOUNT");
+								int? numberOfGroups = reader.IsDBNull("M.NUMBEROFGROUPS") ? null : reader.GetInt32("M.NUMBEROFGROUPS");
+								int? numberOfPlayingDays = reader.IsDBNull("M.NUMBEROFPLAYINGDAYS") ? null : reader.GetInt32("M.NUMBEROFPLAYINGDAYS");
+								int? groupNo = reader.IsDBNull("G.GROUPNO") ? null : reader.GetInt32("G.GROUPNO");
+								int? tournamentType = reader.IsDBNull("G.TOURNAMENTTYPE") ? null : reader.GetInt32("G.TOURNAMENTTYPE");
+								int? numberOfTeams = reader.IsDBNull("G.NUMBEROFTEAMS") ? null : reader.GetInt32("G.NUMBEROFTEAMS");
+								int? numberOfSections = reader.IsDBNull("G.NUMBEROFSECTIONS") ? null : reader.GetInt32("G.NUMBEROFSECTIONS");
+								int? numberOfRounds = reader.IsDBNull("G.NUMBEROFROUNDS") ? null : reader.GetInt32("G.NUMBEROFROUNDS");
+								int? numberOfTables = reader.IsDBNull("G.NUMBEROFTABLES") ? null : reader.GetInt32("G.NUMBEROFTABLES");
+								int? boardsPerRound = reader.IsDBNull("G.BOARDSPERROUND") ? null : reader.GetInt32("G.BOARDSPERROUND");
+								int? halvesPerMatch = reader.IsDBNull("G.HALVESPERMATCH") ? null : reader.GetInt32("G.HALVESPERMATCH");
+								Tournament tournament = new Tournament(mainTournamentId, groupTournementId, name, tournementForm, clubId, strengthCount, numberOfGroups, numberOfPlayingDays, groupNo, tournamentType, numberOfTeams, numberOfSections, numberOfRounds, numberOfTables, boardsPerRound, halvesPerMatch);
+								tournaments.Add(tournament);
 							}
 						}
 					}
