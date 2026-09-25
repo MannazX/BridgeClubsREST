@@ -1,4 +1,5 @@
-﻿using BridgeClubLib.Models;
+﻿using BridgeClubLib.Interfaces;
+using BridgeClubLib.Models;
 using FirebirdSql.Data.FirebirdClient;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BridgeClubLib.Repositories
 {
-	public class RoundRepository
+	public class RoundRepository : IRoundRepository
 	{
 		private string connectString;
 		private string selectSql = "SELECT R.ID AS ROUNDID, S.ID AS SECTIONID, R.ROUNDNO, R.HALFNO, M.TABLENO, M.BOARDSET, M.BOARDSPEC, M.NORTHTEAMNO, M.SOUTHTEAMNO, M.EASTTEAMNO, M.WESTTEAMNO FROM SECTION S JOIN ROUND R ON R.FKSECTIONID = S.ID JOIN ROUNDMATCH M ON M.FKROUNDID = R.ID WHERE S.ID = @SECTIONID";
@@ -30,7 +31,7 @@ namespace BridgeClubLib.Repositories
 					using (FbCommand command = new FbCommand(selectSql, connect))
 					{
 						command.Parameters.AddWithValue("@SECTIONID", sectionId);
-						using (FbDataReader reader = (FbDataReader) await command.ExecuteReaderAsync())
+						using (FbDataReader reader = (FbDataReader)await command.ExecuteReaderAsync())
 						{
 							while (await reader.ReadAsync())
 							{

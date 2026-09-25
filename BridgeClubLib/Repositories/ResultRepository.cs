@@ -41,7 +41,7 @@ namespace BridgeClubLib.Repositories
 								int? boardGroup = reader.IsDBNull("RE.BOARDGROUP") ? null : reader.GetInt32("RE.BOARDGROUP");
 								string? contract = reader.IsDBNull("RE.CONTRACT") ? null : reader.GetString("RE.CONTRACT");
 								string? lead = reader.IsDBNull("RE.LEAD") ? null : reader.GetString("RE.LEAD");
-								int? result = reader.IsDBNull("RE.RESULT") ? null : reader.GetInt32("RE.RESULT");
+								int? matchResult = reader.IsDBNull("RE.RESULT") ? null : reader.GetInt32("RE.RESULT");
 								double? calculatedScoreNs = reader.IsDBNull("RE.CALCULATEDSCORENS") ? null : reader.GetInt32("RE.CALCULATEDSCORENS");
 								double? calculatedScoreNspct = reader.IsDBNull("RE.CALCULATEDSCORENSPCT") ? null : reader.GetInt32("RE.CALCULATEDSCORENSPCT");
 								double? calculatedScoreEw = reader.IsDBNull("RE.CALCULATEDSCOREEW") ? null : reader.GetInt32("RE.CALCULATEDSCOREEW");
@@ -52,8 +52,11 @@ namespace BridgeClubLib.Repositories
 								int? resultCompleted = reader.IsDBNull("RE.RESULTCOMPLETED") ? null : reader.GetInt32("RE.RESULTCOMPLETED");
 								int? excludeGame = reader.IsDBNull("RE.EXCLUDEGAME") ? null : reader.GetInt32("RE.EXCLUDEGAME");
 								int? boardCompared = reader.IsDBNull("RE.BOARDCOMPARED") ? null : reader.GetInt32("RE.BOARDCOMPARED");
-								Result matchResult = new Result(resultId, sectionId, boardNo, boardGroup, contract, lead, result, calculatedScoreNs, calculatedScoreNspct, calculatedScoreEw, calculatedScoreEwpct, declarer, doubling, tricks, resultCompleted, excludeGame, boardCompared);
-								results.Add(matchResult);
+								if (fksectionId != null && fksectionId == sectionId)
+								{
+									Result result = new Result(resultId, sectionId, boardNo, boardGroup, contract, lead, result, calculatedScoreNs, calculatedScoreNspct, calculatedScoreEw, calculatedScoreEwpct, declarer, doubling, tricks, resultCompleted, excludeGame, boardCompared);
+									results.Add(result);
+								}
 							}
 							reader.Close();
 						}

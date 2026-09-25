@@ -1,4 +1,5 @@
-﻿using BridgeClubLib.Models;
+﻿using BridgeClubLib.Interfaces;
+using BridgeClubLib.Models;
 using FirebirdSql.Data.FirebirdClient;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BridgeClubLib.Repositories
 {
-	public class ParticipantRepository
+	public class ParticipantRepository : IParticipantRepository
 	{
 		private string connectString;
 		private string selectSql = "SELECT P.ID AS PARTICIPANTID, P.FKSECTIONID AS SECTIONID, P.PLAYERNAME, P.STARTHAC, P.PLAYERNO, P.PAIRNO, P.SUBSTITUTE, P.ISCAPTAIN, M.TOTAL_BRONZE, M.TOTAL_SILVER, M.TOTAL_GOLD, M.TOTAL_MASTER FROM SECTIONPLAYER P JOIN SECTIONTEAM T ON P.FKSECTIONTEAMID = T.ID JOIN MEM_MEMBER M ON P.FKPLAYERID = M.MEMBER_ID WHERE P.FKSECTIONID = @SECTIONID";
@@ -30,7 +31,7 @@ namespace BridgeClubLib.Repositories
 					using (FbCommand command = new FbCommand(selectSql, connect))
 					{
 						command.Parameters.AddWithValue("@SECTIONID", sectionId);
-						using (FbDataReader reader = (FbDataReader) await command.ExecuteReaderAsync())
+						using (FbDataReader reader = (FbDataReader)await command.ExecuteReaderAsync())
 						{
 							while (await reader.ReadAsync())
 							{
