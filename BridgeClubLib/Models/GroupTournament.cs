@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace BridgeClubLib.Models
 {
-	public class Tournament
+	public class GroupTournament
 	{
 		#region Properties
 		public int MainTournamentID { get; set; }
 		public int GroupTournamentID { get; set; }
 		public string? Name { get; set; }
 		public int? TournamentForm { get; set; }
-		public int? ClubID { get; set; }
 		public int? StrengthGroupCount { get; set; }
 		public int? NumberOfGroups { get; set; }
 		public int? NumberOfPlayingDays { get; set; }
@@ -28,18 +27,17 @@ namespace BridgeClubLib.Models
 		#endregion
 
 		#region Constructor
-		public Tournament()
+		public GroupTournament()
 		{
 			
 		}
 
-		public Tournament(int mainTournamentId, int groupTournamentId, string? name, int? tournamentForm, int? clubId, int? strengthGroupCount, int? numberOfGroups, int? numberOfPlayingDays, int? groupNo, int? tournamentType, int? numberOfTeams, int? numberOfSections, int? numberOfRounds, int? numberOfTables, int? boardsPerRound, int? halvesPerMatch)
+		public GroupTournament(int mainTournamentId, int groupTournamentId, string? name, int? tournamentForm, int? strengthGroupCount, int? numberOfGroups, int? numberOfPlayingDays, int? groupNo, int? tournamentType, int? numberOfTeams, int? numberOfSections, int? numberOfRounds, int? numberOfTables, int? boardsPerRound, int? halvesPerMatch)
 		{
 			MainTournamentID = mainTournamentId;
 			GroupTournamentID = groupTournamentId;
 			Name = name;
 			TournamentForm = tournamentForm;
-			ClubID = clubId;
 			StrengthGroupCount = strengthGroupCount;
 			NumberOfGroups = numberOfGroups;
 			NumberOfPlayingDays = numberOfPlayingDays;

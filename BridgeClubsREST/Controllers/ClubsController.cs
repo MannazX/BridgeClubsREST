@@ -121,10 +121,10 @@ namespace BridgeClubsREST.Controllers
 		[HttpGet("{fdbNo}/Tournaments")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status204NoContent)]
-		public async Task<ActionResult<IEnumerable<Tournament>>> GetTournaments(string fdbNo)
+		public async Task<ActionResult<IEnumerable<GroupTournament>>> GetTournaments(string fdbNo)
 		{
 			tournamentRepo = new TournamentRepository(fdbNo);
-			IEnumerable<Tournament> result = await tournamentRepo.GetTournamentAsync();
+			IEnumerable<GroupTournament> result = await tournamentRepo.GetTournamentAsync();
 			if (result.Count() == 0)
 			{
 				return NoContent();
